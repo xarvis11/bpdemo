@@ -7,6 +7,31 @@ import (
 )
 
 /*
+	Pedersen Commitment
+
+Given a values, we commit the value with different generators
+for each element and for each randomness.
+*/
+func PCommit(value *big.Int, r *big.Int) ECPoint {
+
+	commitment := EC.Zero()
+
+	// r, err := rand.Int(rand.Reader, EC.N)
+	// check(err)
+
+	// modValue := new(big.Int).Mod(value, EC.N)
+
+	// mG, rH
+	// lhsX, lhsY := EC.C.ScalarMult(EC.BPG[0].X, EC.BPG[0].Y, modValue.Bytes())
+	// rhsX, rhsY := EC.C.ScalarMult(EC.BPH[0].X, EC.BPH[0].Y, r.Bytes())
+	// commitment = commitment.Add(ECPoint{lhsX, lhsY}).Add(ECPoint{rhsX, rhsY})
+
+	commitment = EC.G.Mult(value).Add(EC.H.Mult(r))
+
+	return commitment
+}
+
+/*
 Vector Pedersen Commitment
 
 Given an array of values, we commit the array with different generators
@@ -14,13 +39,14 @@ for each element and for each randomness.
 */
 func VectorPCommit(value []*big.Int) (ECPoint, []*big.Int) {
 	R := make([]*big.Int, EC.V)
-	fmt.Println("11")
 
 	commitment := EC.Zero()
-	fmt.Println("11")
 
 	for i := 0; i < EC.V; i++ {
 		fmt.Println("i", i)
+		fmt.Println("v", EC.V)
+		fmt.Println("EN N: ", EC.N)
+
 		r, err := rand.Int(rand.Reader, EC.N)
 		check(err)
 

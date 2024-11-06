@@ -1,6 +1,8 @@
 package bp
 
-import "math/big"
+import (
+	"math/big"
+)
 
 var EC CryptoParams
 
@@ -26,6 +28,7 @@ func (p ECPoint) Mult(s *big.Int) ECPoint {
 // Add adds points p and p2 and returns the resulting point
 func (p ECPoint) Add(p2 ECPoint) ECPoint {
 	X, Y := EC.C.Add(p.X, p.Y, p2.X, p2.Y)
+	// X, Y := elliptic.P256().Add(EC.C, p.X, p.Y, p2.X, p2.Y)
 	return ECPoint{X, Y}
 }
 

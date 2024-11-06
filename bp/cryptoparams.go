@@ -98,5 +98,5 @@ func NewECPrimeGroupKey(n int) CryptoParams {
 
 func init() {
 	EC = NewECPrimeGroupKey(VecLength)
-	//fmt.Println(EC)
+	// fmt.Println(EC)
 }

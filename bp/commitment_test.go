@@ -13,6 +13,7 @@ func TestVectorPCommit3(t *testing.T) {
 	v := make([]*big.Int, 3)
 	for j := range v {
 		v[j] = big.NewInt(2)
+		fmt.Println(v[j])
 	}
 
 	output, r := VectorPCommit(v)
